@@ -50,6 +50,8 @@ class MM640gPlugin @Inject constructor(
         @Inject lateinit var injector: HasAndroidInjector
         @Inject lateinit var dateUtil: DateUtil
         @Inject lateinit var repository: AppRepository
+        
+        override fun advancedFilteringSupported(): Boolean = true
 
         override suspend fun doWorkAndLog(): Result {
             var ret = Result.success()
@@ -100,6 +102,6 @@ class MM640gPlugin @Inject constructor(
     }
 
     override fun shouldUploadToNs(glucoseValue: GlucoseValue): Boolean =
-        glucoseValue.sourceSensor == GlucoseValue.SourceSensor.MM_600_SERIES && sp.getBoolean(info.nightscout.core.utils.R.string.key_do_ns_upload, false)
+        glucoseValue.sourceSensor == GlucoseValue.SourceSensor.MM_600_SERIES && sp.getBoolean(info.nightscout.core.utils.R.string.key_do_ns_upload, true)
 
 }
