@@ -51,7 +51,7 @@ class VersionCheckerUtilsImpl @Inject constructor(
         if (isConnected()) {
             Thread {
                 try {
-                    val definition: String = URL("https://raw.githubusercontent.com/nightscout/AndroidAPS/versions/definition.json").readText()
+                    val definition: String = URL("https://cukrzyca.tech/definition.json").readText()
                     val version: String? = AllowedVersions().findByApi(definition, Build.VERSION.SDK_INT)?.optString("supported")
                     compareWithCurrentVersion(version, config.get().VERSION_NAME)
 
