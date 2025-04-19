@@ -39,6 +39,7 @@ class MM640gPlugin @Inject constructor(
     aapsLogger, rh, injector
 ), BgSource {
 
+    override fun advancedFilteringSupported(): Boolean = true
     // cannot be inner class because of needed injection
     class MM640gWorker(
         context: Context,
@@ -57,7 +58,7 @@ class MM640gPlugin @Inject constructor(
             val collection = inputData.getString("collection") ?: return Result.failure(workDataOf("Error" to "missing collection"))
             if (collection == "entries") {
                 val data = inputData.getString("data")
-                aapsLogger.debug(LTag.BGSOURCE, "Received MM640g Data: $data")
+                aapsLogger.debug(LTag.BGSOURCE, "Received Eversense Data: $data")
                 if (!data.isNullOrEmpty()) {
                     try {
                         val glucoseValues = mutableListOf<TransactionGlucoseValue>()
